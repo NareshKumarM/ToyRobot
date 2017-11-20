@@ -15,3 +15,7 @@ td{
     width:auto;
     position: relative;
 }
+
+div{
+    margin: 5px !important;
+}
