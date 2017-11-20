@@ -1,0 +1,17 @@
+table{
+    border:1px solid black;
+}
+
+td{
+    width:100px !important;
+    height:100px !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+#robo{
+    height: 90px;
+    width:auto;
+    position: relative;
+}
