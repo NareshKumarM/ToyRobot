@@ -5,9 +5,9 @@ var COMMAND_FORMATS = {
 
 var allCommands = [];
 
-var tableSize = { x: 5, y: 5 };
+var gridSize = { x: 5, y: 5 };
 
-function getCommands(input, tableSize) {
+function getCommands(input, gridSize) {
   var commands = input === "" ? [] : input.split(/\n/),
     startIndex,
     validCommands = [];
@@ -17,7 +17,7 @@ function getCommands(input, tableSize) {
     commands[index] = command.toUpperCase().trim();
   });
 
-  startIndex = getInitialPositionIndex(commands, tableSize);
+  startIndex = getInitialPositionIndex(commands, gridSize);
 
   if (startIndex < 0) {
     return [];
@@ -38,14 +38,14 @@ function getCommands(input, tableSize) {
 function appendToValidCommands(command) {
   return (
     COMMAND_FORMATS.REGULAR.exec(command) !== null ||
-    isValidPlaceCommand(command, tableSize)
+    isValidPlaceCommand(command, gridSize)
   );
 }
 
-function getInitialPositionIndex(commands, tableSize) {
+function getInitialPositionIndex(commands, gridSize) {
   var index = -1;
   for (var i = 0; i < commands.length; i++) {
-    if (isValidPlaceCommand(commands[i], tableSize)) {
+    if (isValidPlaceCommand(commands[i], gridSize)) {
       index = i;
       break;
     }
@@ -53,9 +53,9 @@ function getInitialPositionIndex(commands, tableSize) {
   return index;
 }
 
-function isValidPlaceCommand(command, tableSize) {
+function isValidPlaceCommand(command, gridSize) {
   var isDirectionValid = COMMAND_FORMATS.PLACE.exec(command) !== null,
-    isCommandInRange = ifInRange(command, tableSize);
+    isCommandInRange = ifInRange(command, gridSize);
 
   return isDirectionValid && isCommandInRange;
 }
@@ -72,12 +72,12 @@ function getBotLocationData(placeCommand) {
       };
 }
 
-function ifInRange(placeCommand, tableSize) {
+function ifInRange(placeCommand, gridSize) {
   var data = getBotLocationData(placeCommand);
 
   if (data === null) {
     return false;
   }
 
-  return data.x <= tableSize.x && data.y <= tableSize.y;
+  return data.x <= gridSize.x && data.y <= gridSize.y;
 }
