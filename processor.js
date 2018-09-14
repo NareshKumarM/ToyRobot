@@ -47,7 +47,7 @@ function resetToOrigin() {
 }
 
 function placeBot(command) {
-    position = getPlaceData(command);
+    position = getBotLocationData(command);
 }
 
 function moveBotTo() {
